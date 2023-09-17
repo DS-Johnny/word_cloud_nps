@@ -9,9 +9,20 @@ import spacy
 import spacy.cli
 
 # ----------------------------------------- CONFIG
-spacy.cli.download("pt_core_news_sm")
+import subprocess
 
-nlp = spacy.load("pt_core_news_sm")
+# Verifique se o modelo Spacy já está instalado
+try:
+    import spacy
+    nlp = spacy.load("pt_core_news_sm")
+except ImportError:
+    # Se o modelo não estiver instalado, instale-o a partir do arquivo .whl
+    subprocess.run(["pip", "install", "pt_core_news_sm-3.6.0-py3-none-any.whl"])
+
+#spacy.cli.download("pt_core_news_sm")
+
+#nlp = spacy.load("pt_core_news_sm")
+
 
 def gerar_nuvem(df, coluna):
     comentarios = list(df[coluna].dropna())
