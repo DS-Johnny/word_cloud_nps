@@ -6,8 +6,11 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import spacy
+import spacy.cli
 
 # ----------------------------------------- CONFIG
+spacy.cli.download("pt_core_news_sm")
+
 nlp = spacy.load("pt_core_news_sm")
 
 def gerar_nuvem(df, coluna):
